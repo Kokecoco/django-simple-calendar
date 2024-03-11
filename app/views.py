@@ -5,6 +5,18 @@ from .forms import BS4ScheduleForm, SimpleScheduleForm
 from .models import Schedule
 from . import mixins
 
+class MonthWithScheduleCalendar(mixins.MonthWithScheduleMixin, generic.TemplateView):
+    """スケジュール付きの月間カレンダーを表示するビュー"""
+    template_name = 'app/month_with_schedule.html'
+    model = Schedule
+    date_field = 'date'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        calendar_context = self.get_month_calendar()
+        context.update(calendar_context)
+        return context
+
 class MyCalendar(mixins.MonthCalendarMixin, mixins.WeekWithScheduleMixin, generic.CreateView):
     """月間カレンダー、週間カレンダー、スケジュール登録画面のある欲張りビュー"""
     template_name = 'app/mycalendar.html'
