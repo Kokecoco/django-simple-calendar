@@ -9,7 +9,7 @@
                 {% for field in form %}
                     <div class="form-group row">
                         <label for="{{ field.id_for_label }}"
-                               class="col-sm-4 col-form-label">{{ field.label_tag }}</label>
+                                class="col-sm-4 col-form-label">{{ field.label_tag }}</label>
                         <div class="col-sm-8">
                             {{ field }}
                             {{ field.errors }}
@@ -29,7 +29,7 @@
 
 {% block extrajs %}
     <link rel="stylesheet" type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.min.css">
+            href="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/timedropper/1.0/timedropper.min.js"></script>
     <script>
         $(function () {
