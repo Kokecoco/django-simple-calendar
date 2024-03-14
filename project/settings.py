@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost',  '.pythonanywhere.com', 'kaisei-calendar.pythonanywhere.com']
+ALLOWED_HOSTS = ['localhost',  '.pythonanywhere.com', 'kaiseitools.pythonanywhere.com']
 
 
 # Application definition
