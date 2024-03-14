@@ -1,0 +1,15 @@
+{% extends 'app/base.html' %}
+{% block content %}
+<div class="card">
+  <h5 class="card-header">{{ object.date }}の{{ object.start_time }}から{{ object.end_time }}まで</h5>
+  <div class="card-body">
+    <h5 class="card-title">{{ object.summary }}</h5>
+    <p class="card-text">{{ object.description }}</p>
+    <a href="/calendar" class="btn btn-primary">ホームに戻る</a><br>
+    <form method="post" action="{% url 'app:delete' object.id %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary">削除</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

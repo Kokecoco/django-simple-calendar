@@ -1,0 +1,9 @@
+{% extends 'app/base.html' %}
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-primary">ログイン</button>
+</form>
+<a href="/signup/" class="btn btn-primary">新規登録<a>
+{% endblock %}

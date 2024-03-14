@@ -5,23 +5,20 @@ app_name = 'app'
 
 urlpatterns = [
     path(
-        'month_with_schedule/',
-        views.MonthWithScheduleCalendar.as_view(), name='month_with_schedule'
+        '', views.MyCalendar.as_view(), name='calendar'
+    ),
+    path('calendar/', views.MyCalendar.as_view(), name='calendar'),
+    path(
+        'calendar/<int:year>/<int:month>/<int:day>/', views.MyCalendar.as_view(), name='calendar'
     ),
     path(
-        'month_with_schedule/<int:year>/<int:month>/',
-        views.MonthWithScheduleCalendar.as_view(), name='month_with_schedule'
-    ),
-    path('mycalendar/', views.MyCalendar.as_view(), name='mycalendar'),
-    path(
-        'mycalendar/<int:year>/<int:month>/<int:day>/', views.MyCalendar.as_view(), name='mycalendar'
+        'calendar/<int:year>/<int:month>', views.MyCalendar.as_view(), name='calendar'
     ),
     path(
-        'month_with_forms/',
-        views.MonthWithFormsCalendar.as_view(), name='month_with_forms'
+        'event_detail/<int:pk>/',
+        views.EventDetail.as_view(), name='event_detail'
     ),
-    path(
-        'month_with_forms/<int:year>/<int:month>/',
-        views.MonthWithFormsCalendar.as_view(), name='month_with_forms'
-    ),
+    path('login/', views.login_view, name='login'),
+    path('delete/<int:pk>/', views.delete_event, name='delete'),
+    path('signup/', views.signup_view, name="signup"),
 ]

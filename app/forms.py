@@ -1,13 +1,16 @@
 from django import forms
 from .models import Schedule
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
 
 class BS4ScheduleForm(forms.ModelForm):
     """Bootstrapに対応するためのModelForm"""
 
     class Meta:
         model = Schedule
-        fields = ('summary', 'description', 'start_time', 'end_time')
+        fields = ('summary', 'description', 'start_time', 'end_time', 'date')
         widgets = {
             'summary': forms.TextInput(attrs={
                 'class': 'form-control',
@@ -21,6 +24,9 @@ class BS4ScheduleForm(forms.ModelForm):
             'end_time': forms.TextInput(attrs={
                 'class': 'form-control',
             }),
+            'date': DateInput(attrs={
+                'class': 'form-control',
+            }),
         }
 
     def clean_end_time(self):
@@ -31,17 +37,3 @@ class BS4ScheduleForm(forms.ModelForm):
                 '終了時間は、開始時間よりも後にしてください'
             )
         return end_time
-
-
-class SimpleScheduleForm(forms.ModelForm):
-    """シンプルなスケジュール登録用フォーム"""
-
-    class Meta:
-        model = Schedule
-        fields = ('summary', 'date',)
-        widgets = {
-            'summary': forms.TextInput(attrs={
-                'class': 'form-control',
-            }),
-            'date': forms.HiddenInput,
-        }

@@ -1,0 +1,8 @@
+{% extends 'app/base.html' %}
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-primary">登録</button>
+</form>
+{% endblock %}
