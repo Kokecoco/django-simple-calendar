@@ -11,16 +11,17 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from pathlib import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost',  '.pythonanywhere.com', 'kaiseitools.pythonanywhere.com']
 
@@ -29,6 +30,7 @@ ALLOWED_HOSTS = ['localhost',  '.pythonanywhere.com', 'kaiseitools.pythonanywher
 
 INSTALLED_APPS = [
     'app.apps.AppConfig',  # カレンダーアプリ
+    'tracker.apps.TrackerConfig', # 学習トラッカー
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,7 +54,9 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -66,6 +70,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'project.wsgi.application'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 
 # Database
@@ -116,10 +123,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # HTTP状態でCookieを送信するのを防ぐ
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
 from django.core.management.utils import get_random_secret_key
-SECRET_KEY = get_random_secret_key()  
+SECRET_KEY = get_random_secret_key()
+
+MEDIA_URL = '/media/'
+
+AUTHENTICATION_BACKENDS = [
+    'app.backends.CustomEmailAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]

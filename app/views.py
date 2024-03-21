@@ -8,8 +8,25 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
+# ------------------ custom signin form ------------------
+from django.contrib.auth.models import User
+from django import forms
 
-@login_required(login_url='/login/')
+class CustomUserCreationForm(UserCreationForm):
+    email = forms.EmailField(required=True)  # メールアドレスのフィールドを追加
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']  # フォームに表示するフィールドを指定
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['email'].label = "Email"  # フォームのラベルを設定
+# ------------------------- end --------------------------
+
+
+
+@login_required(login_url='calendar/login/')
 def delete_event(request, pk):
     event = get_object_or_404(Schedule, id=pk)
     if request.method == 'POST':
@@ -17,14 +34,7 @@ def delete_event(request, pk):
     return redirect('/calendar/')  # 削除後のリダイレクト先
 
 def signup_view(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('app:login')  # 登録後のリダイレクト先
-    else:
-        form = UserCreationForm()
-    return render(request, 'app/signup.html', {'form': form})
+    return redirect("https://docs.google.com/forms/d/e/1FAIpQLSfEVZeCxGwa9MryRO97LYAszd6_SNBD03gpFhj3t_A4KzRhkQ/viewform?usp=sf_link")
 
 def login_view(request):
     if request.method == 'POST':
@@ -39,7 +49,7 @@ def login_view(request):
 
 class MyCalendar(LoginRequiredMixin, mixins.MonthWithScheduleMixin, mixins.MonthCalendarMixin, generic.CreateView):
     """月間カレンダー、週間カレンダー、スケジュール登録画面のある欲張りビュー"""
-    login_url = '/login/'
+    login_url = '/calendar/login/'
     template_name = 'app/mycalendar.html'
     model = Schedule
     date_field = 'date'
@@ -59,7 +69,7 @@ class MyCalendar(LoginRequiredMixin, mixins.MonthWithScheduleMixin, mixins.Month
 
 class EventDetail(LoginRequiredMixin, generic.DetailView):
     """イベントの詳細を表示するビュー"""
-    login_url = '/login/'
+    login_url = '/calendar/login/'
     template_name = 'app/schedule_detail.html'
     model = Schedule
 

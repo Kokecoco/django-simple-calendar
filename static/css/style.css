@@ -1,0 +1,36 @@
+/* static/learning_tracker/style.css */
+
+/* tracker */
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-button {
+  margin-left: 10px;
+}
+
+/* home */
+.index-page {
+    padding-top: 70px; /* Navbar height */
+}
+
+.home-card {
+    height: 100%;
+}
+
+.home-card-title {
+    font-size: 1.25rem;
+}
+
+.home-card-text {
+    font-size: 1rem;
+}
+
+.home-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+

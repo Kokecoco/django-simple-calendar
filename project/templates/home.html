@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaisei Tools</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body class="index-page">
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="calendar/">共有カレンダー</a>
+        <a class="navbar-brand" href="tracker/">学習トラッカー</a>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="display-4">開成中等教育学校向けの学習ツールボックス</h1>
+        <p class="lead">Chromebookでの学習をサポートするツールです。</p>
+    </div>
+</section>
+
+<!-- App Cards Section -->
+<section class="container">
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <div class="card home-card">
+                <div class="card-body home-card-body">
+                    <h5 class="card-title home-card-title">共有カレンダー</h5>
+                    <p class="card-text home-card-text">課題の期限やイベントを登録できます。利用者全員と共有されるため、学校のイベントなどを登録します。</p>
+                    <a href="calendar/" class="btn btn-primary">開く</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card home-card">
+                <div class="card-body home-card-body">
+                    <h5 class="card-title home-card-title">学習トラッカー</h5>
+                    <p class="card-text home-card-text">学習状況を管理し、課題の追加や完了状態の設定が可能です。</p>
+                    <a href="tracker/" class="btn btn-primary">開く</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3 home-footer">
+    <div class="container">
+        <p>&copy; 2024 Smart Study Box. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!-- templates/learning_tracker/tracker.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学習トラッカー</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>学習トラッカー</h1>
+        <!-- Learning progress -->
+        <div class="progress">
+            <div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <br>
+        <!-- Tasks list -->
+        <div class="card">
+            <div class="card-header">
+                タスク
+            </div>
+            <ul id="taskList" class="list-group list-group-flush">
+                <!-- Tasks will be dynamically added here -->
+            </ul>
+        </div>
+        <br>
+        <!-- Add new task form -->
+        <div class="card">
+            <div class="card-header">
+                タスクを追加
+            </div>
+            <div class="card-body">
+                <form id="taskForm">
+                    <div class="form-group">
+                        <label for="taskName">タスク名</label>
+                        <input type="text" class="form-control" id="taskName" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary"id="addTaskButton">タスクを追加</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Sortable JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
