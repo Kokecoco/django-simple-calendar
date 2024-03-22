@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>席替えツール</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<style>
+  .seat-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  
+  .seat {
+    width: 60px;
+    height: 40px;
+    border: 1px solid black;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    line-height: 50px;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+<div>
+  <label for="student-count">人数：</label>
+  <select id="student-count" class="form-select" onchange="generateSeating()">
+    <option value="26">26人</option>
+    <option value="27" selected>27人</option>
+    <option value="40">40人</option>
+  </select>
+</div>
+<div id="seating-chart" class="seat-container"></div>
+<button onclick="generateSeating()" class="btn btn-primary">席替えする</button>
+</div>
+<script>
+// 各クラスの席の配置情報
+var seatingInfo = {
+  26: [[0,0,0,0,0,0,0],[0,1,1,1,1,1,0],[0,1,1,1,1,1,1],[0,1,1,1,1,1,1],[0,1,1,1,1,1,0],[0,0,1,1,1,1,0]],
+  27: [[0,0,0,0,0,0,0],[0,1,1,1,1,1,0],[0,1,1,1,1,1,1],[0,1,1,1,1,1,1],[0,1,1,1,1,1,0],[0,1,1,1,1,1,0]],
+  40: [[1,1,1,1,1,1,1],[1,1,1,1,1,1,1],[1,1,1,1,1,1,1],[1,1,1,1,1,1,1],[1,1,1,1,1,1,1],[0,1,1,1,1,1,0]]
+};
+
+function generateSeating() {
+  var studentCount = document.getElementById("student-count").value;
+  var seatingArray = seatingInfo[studentCount];
+  assignSeats(seatingArray, parseInt(studentCount));
+}
+
+function assignSeats(seatingArray, studentCount) {
+  var seatingChart = document.getElementById("seating-chart");
+  seatingChart.innerHTML = ""; // 前の席の配置をクリア
+
+  var rows = seatingArray.length;
+  var cols = seatingArray[0].length;
+
+  var students = [];
+  for (var i = 1; i <= studentCount; i++) {
+    students.push(i);
+  }
+
+  for (var i = 0; i < cols; i++) {
+    var columnDiv = document.createElement("div");
+    columnDiv.className = "column";
+    seatingChart.appendChild(columnDiv);
+
+    for (var j = 0; j < rows; j++) {
+      var seat = document.createElement("div");
+      seat.className = "seat";
+
+      // 二次元配列の要素が1の場合、1から人数までの乱数で席を割り当てる
+      if (seatingArray[j][i] === 1) {
+        var randomIndex = Math.floor(Math.random() * students.length);
+        var student = students.splice(randomIndex, 1)[0];
+        seat.textContent = student;
+      } else {
+        seat.textContent = " ";
+      }
+      columnDiv.appendChild(seat);
+    }
+  }
+}
+
+// ページ読み込み時に席を生成
+window.onload = generateSeating;
+  </script>
+  
+  </body>
+</html>

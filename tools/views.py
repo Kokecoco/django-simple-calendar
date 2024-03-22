@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def seating(request):
+    return render(request, 'seating.html')
