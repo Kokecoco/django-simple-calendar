@@ -24,5 +24,5 @@ urlpatterns = [
     path('calendar/', include('app.urls')),
     path('tracker/', include('tracker.urls')),
     path('', views.home_view, name="home"),
-    path('tools', include('tools.urls')),
+    path('tools/', include('tools.urls')),
 ] +  static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

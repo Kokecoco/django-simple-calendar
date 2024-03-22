@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['localhost',  '.pythonanywhere.com', 'kaiseitools.pythonanywher
 INSTALLED_APPS = [
     'app.apps.AppConfig',  # カレンダーアプリ
     'tracker.apps.TrackerConfig', # 学習トラッカー
+    'tools.apps.ToolsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

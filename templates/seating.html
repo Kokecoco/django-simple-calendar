@@ -11,7 +11,7 @@
     flex-wrap: wrap;
     justify-content: flex-start;
   }
-  
+
   .seat {
     width: 60px;
     height: 40px;
@@ -26,6 +26,14 @@
 </style>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/calendar/">共有カレンダー</a>
+        <a class="navbar-brand" href="/tracker/">学習トラッカー</a>
+        <a class="navbar-brand" href="/tools/seating/">席替えツール</a>
+    </div>
+</nav>
+<br>
   <div class="container">
 <div>
   <label for="student-count">人数：</label>
@@ -89,6 +97,6 @@ function assignSeats(seatingArray, studentCount) {
 // ページ読み込み時に席を生成
 window.onload = generateSeating;
   </script>
-  
+
   </body>
 </html>
